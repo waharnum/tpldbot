@@ -3,3 +3,4 @@ bin
 lib
 include
 pip-selfcheck.json
+maketweet.sh
