@@ -16,27 +16,18 @@ access_token_secret = str(sys.argv[4])
 
 result_feed_URL = "http://www.torontopubliclibrary.ca/rss.jsp?N=38550&Erp=0"
 
-# Run in an infinite loop, make a tweet every hour
-
-while True:
-
-    # Get the feed without records to make finding the total records faster
+def get_random_item():
     tree = etree.parse(result_feed_URL)
-
     # Get the total results
     total_results = tree.find('channel').find('results').find('total-results').text
-
-    # print(total_results)
-
     # Generate a random number from the total results
+    item_number = randint(1, int(total_results))
+    return item_number
 
-    image_number = randint(1, int(total_results))
-    #
-    # print ("You should get image #" + str(image_number))
+def make_tweet():
+    # Get the record associated with a random number
 
-    # Get the record associated with that random number
-
-    record_feed_URL = "http://www.torontopubliclibrary.ca/rss.jsp?N=38550&Erp=1&No=" + str(image_number)
+    record_feed_URL = "http://www.torontopubliclibrary.ca/rss.jsp?N=38550&Erp=1&No=" + str(get_random_item())
 
     record_tree = etree.parse(record_feed_URL)
 
@@ -76,8 +67,12 @@ while True:
 
     api = tweepy.API(auth)
 
-
     print("I'm making a tweet!")
     print(tweet)
     api.update_status(status=tweet)
+
+# Run in an infinite loop, make a tweet every hour
+
+while True:
+    make_tweet()
     time.sleep(3600)
