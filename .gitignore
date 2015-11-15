@@ -4,3 +4,4 @@ lib
 include
 pip-selfcheck.json
 maketweet.sh
+tpldbot_env.ini
