@@ -1,5 +1,17 @@
 from lxml import etree
 from random import randint
+import sys
+import tweepy
+
+# Expected usage: $ "python tpldbot.py [consumer_key] [consumer_secret] [access_token] [access_token_secret]"
+
+consumer_key = str(sys.argv[1])
+consumer_secret = str(sys.argv[2])
+
+access_token = str(sys.argv[3])
+access_token_secret = str(sys.argv[4])
+
+###
 
 result_feed_URL = "http://www.torontopubliclibrary.ca/rss.jsp?N=38550&Erp=0"
 
@@ -27,6 +39,8 @@ item = record_tree.find('channel').find('item')
 
 item_title = item.find('title').text
 
+item_link = item.find('link').text
+
 item_record = item.find('record')
 
 item_id = item_record.find('recordId').text
@@ -41,6 +55,16 @@ item_image_URL = "http://static.torontopubliclibrary.ca/da/images/MC/" + item_im
 
 print("Title: " + item_title)
 print("Record ID: " + item_id)
+print("Link: " + item_link)
 print("Image URL:" + item_image_URL)
 
 # Make a tweet from it
+
+auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+auth.set_access_token(access_token, access_token_secret)
+
+api = tweepy.API(auth)
+
+tweet = item_title + " " + item_link
+print(tweet)
+api.update_status(status=tweet)
