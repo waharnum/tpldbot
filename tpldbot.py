@@ -65,11 +65,12 @@ while True:
 
     # Make a tweet from it
 
-    tweet_URL_max_length = 40
+    # Manual t.co length, should be safe for a while
+    tweet_URL_max_length = 25
     tweet_title_trim_length = 140 - tweet_URL_max_length
 
     tweet = item_title[:tweet_title_trim_length] + " " + item_link
-    
+
     auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
     auth.set_access_token(access_token, access_token_secret)
 
