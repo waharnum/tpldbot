@@ -45,11 +45,13 @@ def construct_tweet(item):
     # We have to convert the file name to lowercase
 
     item_image_URL = "http://static.torontopubliclibrary.ca/da/images/MC/" + item_image_file_name[0].lower()
-    #
+    
     # print("Title: " + item_title)
     # print("Record ID: " + item_id)
     # print("Link: " + item_link)
     # print("Image URL:" + item_image_URL)
+
+    # Manual t.co length, should be safe for a while
     tweet_URL_max_length = 25
     tweet_title_trim_length = 140 - tweet_URL_max_length
 
@@ -62,11 +64,10 @@ def make_tweet():
 
     item = get_item_by_number(get_random_item_number())
 
-    tweet_text = construct_tweet(item)
-
     # Make a tweet from it
 
-    # Manual t.co length, should be safe for a while
+    tweet_text = construct_tweet(item)
+
     auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
     auth.set_access_token(access_token, access_token_secret)
 
