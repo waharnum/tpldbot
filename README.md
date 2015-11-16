@@ -1,5 +1,5 @@
 # tpldbot
-A more poorly implemented imitation of YUDLbot.
+A more poorly implemented imitation of [YUDLbot](https://github.com/yorkulibraries/YUDLbot).
 
 Tweets from https://twitter.com/tpldbot
 
