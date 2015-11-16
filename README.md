@@ -1,8 +1,8 @@
 # tpldbot
-A shameless and probably more poorly implemented imitation of YUDLbot.
+A more poorly implemented imitation of [YUDLbot](https://github.com/yorkulibraries/YUDLbot).
 
 Tweets from https://twitter.com/tpldbot
 
 Not officially associated with Toronto Public Library.
 
-Runs in a Docker container because DOCKER DOCKER DOCKER.
+For "production", runs in a Docker container because DOCKER DOCKER DOCKER.
