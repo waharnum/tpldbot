@@ -45,7 +45,7 @@ def construct_tweet(item):
     # We have to convert the file name to lowercase
 
     item_image_URL = "http://static.torontopubliclibrary.ca/da/images/MC/" + item_image_file_name[0].lower()
-    
+
     # print("Title: " + item_title)
     # print("Record ID: " + item_id)
     # print("Link: " + item_link)
@@ -80,5 +80,10 @@ def make_tweet():
 # Run in an infinite loop, make a tweet every hour
 
 while True:
-    make_tweet()
-    time.sleep(3600)
+    try:
+        make_tweet()
+        time.sleep(3600)
+    except Exception as e:
+        print("Failed to tweet. Exception:")
+        print(str(e))
+        time.sleep(900)
