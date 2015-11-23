@@ -75,6 +75,7 @@ def make_tweet():
     api.update_status(status=tweet_text)
 
 # Run in an infinite loop, make a tweet every hour
+# If an error is encoutered, try again in 15 minutes
 
 while True:
     try:
