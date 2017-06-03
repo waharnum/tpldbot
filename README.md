@@ -2,7 +2,9 @@
 
 ## UPDATE JUN 02, 2017
 
-Kept for legacy purposes, but the current version of https://twitter.com/tpldbot is now an Azure Function that I'll write something up about at some point.
+Kept for legacy purposes, but the current version of https://twitter.com/tpldbot is now an Azure Function written in Node that I'll write something up about at some point.
+
+Since the bulk of the code is about using Toronto Public Library's RSS feed as a pseudo-API, much of the information below is still relevant.
 
 ---
 
