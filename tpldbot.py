@@ -1,5 +1,7 @@
 from lxml import etree
 from random import randint
+from urllib import request
+import io
 import sys
 import tweepy
 import time
@@ -15,7 +17,9 @@ access_token_secret = str(sys.argv[4])
 result_feed_URL = "https://www.torontopubliclibrary.ca/rss.jsp?N=38550&Erp=0"
 
 def get_random_item_number():
-    tree = etree.parse(result_feed_URL)
+    with request.urlopen(result_feed_URL) as response:
+       xml = response.read()
+    tree = etree.parse(io.BytesIO(xml))
     # Get the total results
     total_results = tree.find('channel').find('results').find('total-results').text
     # Generate a random number from the total results
@@ -24,7 +28,9 @@ def get_random_item_number():
 
 def get_item_by_number(number):
     record_feed_URL = "https://www.torontopubliclibrary.ca/rss.jsp?N=38550&Erp=1&No=" + str(number)
-    record_tree = etree.parse(record_feed_URL)
+    with request.urlopen(record_feed_URL) as response:
+       xml = response.read()
+    record_tree = etree.parse(io.BytesIO(xml))
     item = record_tree.find('channel').find('item')
     return item
 
