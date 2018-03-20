@@ -12,7 +12,7 @@ consumer_secret = str(sys.argv[2])
 access_token = str(sys.argv[3])
 access_token_secret = str(sys.argv[4])
 
-result_feed_URL = "http://www.torontopubliclibrary.ca/rss.jsp?N=38550&Erp=0"
+result_feed_URL = "https://www.torontopubliclibrary.ca/rss.jsp?N=38550&Erp=0"
 
 def get_random_item_number():
     tree = etree.parse(result_feed_URL)
@@ -23,7 +23,7 @@ def get_random_item_number():
     return item_number
 
 def get_item_by_number(number):
-    record_feed_URL = "http://www.torontopubliclibrary.ca/rss.jsp?N=38550&Erp=1&No=" + str(number)
+    record_feed_URL = "https://www.torontopubliclibrary.ca/rss.jsp?N=38550&Erp=1&No=" + str(number)
     record_tree = etree.parse(record_feed_URL)
     item = record_tree.find('channel').find('item')
     return item
@@ -41,7 +41,7 @@ def construct_tweet(item):
 
     # We have to convert the file name to lowercase
 
-    item_image_URL = "http://static.torontopubliclibrary.ca/da/images/MC/" + item_image_file_name[0].lower()
+    item_image_URL = "https://static.torontopubliclibrary.ca/da/images/MC/" + item_image_file_name[0].lower()
 
     # print("Title: " + item_title)
     # print("Record ID: " + item_id)
